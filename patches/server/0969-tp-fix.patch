@@ -1,0 +1,19 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: PirateCody <gentzcody@gmail.com>
+Date: Fri, 24 Mar 2023 00:56:52 -0500
+Subject: [PATCH] tp fix
+
+
+diff --git a/src/main/java/net/minecraft/server/level/ServerPlayer.java b/src/main/java/net/minecraft/server/level/ServerPlayer.java
+index ca5291a9573a62cb5c19539cf5c7aceff11f9829..ae70f2d68b83979268f287dd252370ec5d16ab49 100644
+--- a/src/main/java/net/minecraft/server/level/ServerPlayer.java
++++ b/src/main/java/net/minecraft/server/level/ServerPlayer.java
+@@ -1822,7 +1822,7 @@ public class ServerPlayer extends Player {
+     @Override
+     public boolean teleportTo(ServerLevel world, double destX, double destY, double destZ, Set<RelativeMovement> flags, float yaw, float pitch) {
+         // CraftBukkit start
+-        return this.teleportTo(world, 0, 0, 0, flags, 0, 0, TeleportCause.UNKNOWN);
++        return this.teleportTo(world, destX, destY, destZ, flags, yaw, pitch, TeleportCause.UNKNOWN); // Paper - properly forward destination parameters to overloaded method
+     }
+ 
+     public boolean teleportTo(ServerLevel worldserver, double d0, double d1, double d2, Set<RelativeMovement> set, float f, float f1, TeleportCause cause) {
